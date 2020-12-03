@@ -13,5 +13,3 @@
 ## ```Note:``` 
 
 #### Some dirto's may require you to manually install python libs using your preferred package manager
-
-#### Now we will need to install all of the 
