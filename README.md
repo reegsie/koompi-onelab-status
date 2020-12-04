@@ -5,7 +5,7 @@
 ## ```Contents:```
 
 <ul>
-  <li> -> [Dependencies](https://github.com/reegsie/koompi-onelab-status/blob/main/Text_Files/dependencies.md) </li>
+  <li> -> [Dependencies](/Text_Files/dependencies.md) </li>
   <li> -> [WhitePapaer] </li>
   <li> -> [Client Setup] </li>
   <li> -> [Master Setup] </li>
