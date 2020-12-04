@@ -2,11 +2,11 @@
 
 ## ```Note:```
 
-#### You will need to install them based on your OS, I'll be using 'Linux Arch' there shouldn't be too much of differenece bewteeen linux OS's  
+#### You will need to install them bas####ed on your OS, I'll be using 'Linux Arch' there shouldn't be too much of differenece bewteeen linux OS's  
 
 ---
 
-#### The only thing that needs to be installed it PyQt5 as it's the bas of this GUI 
+###### The only thing that needs to be installed it PyQt5 as it's the bas of this GUI 
 
 ```pip install PyQt5```
 
