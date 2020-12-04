@@ -5,11 +5,11 @@
 ## ```Contents:```
 
 <ul>
-  <li> -> Dependencies </li>
-  <li> -> WhitePapaer </li>
-  <li> -> Client Setup </li>
-  <li> -> Master Setup </li>
-  <li> -> Dev Notes </li>
+  <li> -> [Dependencies](https://github.com/reegsie/koompi-onelab-status/blob/main/Text_Files/dependencies.md) </li>
+  <li> -> [WhitePapaer] </li>
+  <li> -> [Client Setup] </li>
+  <li> -> [Master Setup] </li>
+  <li> -> [Dev Notes] </li>
 </ul>
 
 ---
