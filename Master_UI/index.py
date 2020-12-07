@@ -236,9 +236,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 if data == 'True':
                     
                     eval(currtent_machine).setStyleSheet('background-color: lightgreen')
-                    self.pixmap = QPixmap(".services/image-tracking/pc_{}.png".format(i))
-                    self.pixmap.scaled(320 , 230)
-                    eval(current_label).setPixmap(self.pixmap)
+                    eval(current_label).setPixmap(QPixmap(".services/image-tracking/pc_{}.png".format(i)).scaled(330,250,Qt.IgnoreAspectRatio))
+                    #eval(current_label).setPixmap(self.pixmap)
                     
                 else:
 
