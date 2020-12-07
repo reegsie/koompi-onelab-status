@@ -29,14 +29,14 @@ class file_stream(QtWidgets.QWidget):
         self.bsize = QSize(74,74)
 
         # Icon for opening file explorer button 
-        self.open_pacman_btn.setIcon(QIcon('images/file_select.png'))
+        self.open_pacman_btn.setIcon(QIcon('.services/images/file_select.png'))
         self.open_pacman_btn.setIconSize(self.size)
 
         # Listening for the btn to be clicked
         self.open_pacman_btn.clicked.connect(self.select_file)
 
         # Icon for sending file btn
-        self.send_file_btn.setIcon(QIcon('images/send.png'))
+        self.send_file_btn.setIcon(QIcon('.services/images/send.png'))
         self.send_file_btn.setIconSize(self.bsize)
        
         # Listens for send button to be clicked
@@ -52,7 +52,7 @@ class file_stream(QtWidgets.QWidget):
         
         for i in self.pc_ip:
         
-            with open('ip-ping/ping_{}.txt'.format(i), 'r') as file:
+            with open('.services/ip-ping/ping_{}.txt'.format(i), 'r') as file:
                 
                 data = file.read().replace('\n', '')
 
@@ -85,7 +85,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # Initializing icons
         # On / Off button
         self.size = QSize(49,49)
-        self.start_btn.setIcon(QIcon('services/images/start.png'))
+        self.start_btn.setIcon(QIcon('.services/images/start.png'))
         self.start_btn.setIconSize(self.size)
         
         # Making the pause button checkable
@@ -101,31 +101,31 @@ class MainWindow(QtWidgets.QMainWindow):
         self.start_btn.toggle()
         
         # Play button
-        self.play_btn.setIcon(QIcon('services/images/play.png'))
+        self.play_btn.setIcon(QIcon('.services/images/play.png'))
         self.play_btn.setIconSize(self.size)
         
         # Pause buttons
-        self.pause_btn.setIcon(QIcon('services/images/pause.png'))
+        self.pause_btn.setIcon(QIcon('.services/images/pause.png'))
         self.pause_btn.setIconSize(self.size)
         
         # Pause buttons
-        self.refresh_btn.setIcon(QIcon('services/images/refresh.png'))
+        self.refresh_btn.setIcon(QIcon('.services/images/refresh.png'))
         self.refresh_btn.setIconSize(self.size)
         
         # Blank out screens
-        self.blank_btn.setIcon(QIcon('services/images/blank.png'))
+        self.blank_btn.setIcon(QIcon('.services/images/blank.png'))
         self.blank_btn.setIconSize(self.size)
         
         #  File menu Icon
-        self.file_btn.setIcon(QIcon('services/images/file_transfer.png'))
+        self.file_btn.setIcon(QIcon('.services/images/file_transfer.png'))
         self.file_btn.setIconSize(self.size)
         
         # Interact icon
-        self.interact_btn.setIcon(QIcon('services/images/interact.png'))
+        self.interact_btn.setIcon(QIcon('.services/images/interact.png'))
         self.interact_btn.setIconSize(self.size)
 
         # Screen share icon
-        self.screen_share_btn.setIcon(QIcon('services/images/share_screen.png'))
+        self.screen_share_btn.setIcon(QIcon('.services/images/share_screen.png'))
         self.screen_share_btn.setIconSize(self.size)
 
         #++++++++++++++++++#
@@ -226,7 +226,7 @@ class MainWindow(QtWidgets.QMainWindow):
             ##################################
         
         
-            with open('/home/admin/OneLab-UI-Status/services/ip-ping/ping_{}.txt'.format(i), 'r') as file:
+            with open('.services/ip-ping/ping_{}.txt'.format(i), 'r') as file:
                 
                 data = file.read().replace('\n', '')
             
@@ -236,7 +236,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 if data == 'True':
                     
                     eval(currtent_machine).setStyleSheet('background-color: lightgreen')
-                    self.pixmap = QPixmap("/home/admin/OneLab-UI-Status/image-tracking/pc_{}.png".format(i))
+                    self.pixmap = QPixmap(".services/image-tracking/pc_{}.png".format(i))
                     self.pixmap.scaled(320 , 230)
                     eval(current_label).setPixmap(self.pixmap)
                     
@@ -263,7 +263,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.pause_btn.setEnabled(False)
 
         # Calling the thread that will handle sending the request to pause screens
-        os.system('cd services/ && python run_disable.py & > /dev/null &')
+        os.system('cd .services/executables/ && ./run_disable.bin')
 
     def play_func(self):
         
@@ -271,13 +271,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.pause_btn.setEnabled(True)
 
         # Calling the thread the will handle re activating the perifrials
-        os.system('cd services/ && python run_enable.py & > /dev/null')
+        os.system('cd .services/executables && ./run_enable.bin')
 
     def lock_pc(self):
 
         self.pause_btn.setEnabled(False)
 
-        os.system('cd services/ && python run_lock.py & /dev/null')
+        os.system('cd .services/executables && ./run_lock.bin')
 
     # for tracking the status of the start button (checked or not checked)
     def on_off_switch(self):
@@ -298,77 +298,77 @@ class MainWindow(QtWidgets.QMainWindow):
 
     # Remote control
     def remote_control_4(self):
-        os.system('echo 4 > services/remote_update/data.txt && cd services && ./remote_init.sh')
+        os.system('echo 4 > .services/remote_update/data.txt && cd .services && ./remote_init.sh')
     def remote_control_5(self):
-        os.system('echo 5 > services/remote_update/data.txt && cd services && ./remote_init.sh')
+        os.system('echo 5 > .services/remote_update/data.txt && cd .services && ./remote_init.sh')
     def remote_control_6(self):
-        os.system('echo 6 > services/remote_update/data.txt && cd services && ./remote_init.sh')
+        os.system('echo 6 > .services/remote_update/data.txt && cd .services && ./remote_init.sh')
     def remote_control_7(self):
-        os.system('echo 7 > services/remote_update/data.txt && cd services && ./remote_init.sh')
+        os.system('echo 7 > .services/remote_update/data.txt && cd .services && ./remote_init.sh')
     def remote_control_8(self):
-        os.system('echo 8 > services/remote_update/data.txt')
+        os.system('echo 8 > .services/remote_update/data.txt && cd .services && ./remote_init.sh')
     def remote_control_9(self):
-        os.system('echo 9 > services/remote_update/data.txt')
+        os.system('echo 9 > .services/remote_update/data.txt && cd .services && ./remote_init.sh')
     def remote_control_10(self):
-        os.system('echo 10 > services/remote_update/data.txt')
+        os.system('echo 10 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_11(self):
-        os.system('echo 11 > services/remote_update/data.txt')
+        os.system('echo 11 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_12(self):
-        os.system('echo 12 > services/remote_update/data.txt')
+        os.system('echo 12 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_13(self):
-        os.system('echo 13 > services/remote_update/data.txt')
+        os.system('echo 13 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_14(self):
-        os.system('echo 14 > services/remote_update/data.txt')
+        os.system('echo 14 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_15(self):
-        os.system('echo 15 > services/remote_update/data.txt')
+        os.system('echo 15 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_16(self):
-        os.system('echo 16 > services/remote_update/data.txt')
+        os.system('echo 16 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_17(self):
-        os.system('echo 17 > services/remote_update/data.txt')
+        os.system('echo 17 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_18(self):
-        os.system('echo 18 > services/remote_update/data.txt')
+        os.system('echo 18 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_19(self):
-        os.system('echo 19 > services/remote_update/data.txt')
+        os.system('echo 19 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_20(self):
-        os.system('echo 20 > services/remote_update/data.txt')
+        os.system('echo 20 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_21(self):
-        os.system('echo 21 > services/remote_update/data.txt')
+        os.system('echo 21 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_22(self):
-        os.system('echo 22 > services/remote_update/data.txt')
+        os.system('echo 22 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_23(self):
-        os.system('echo 23 > services/remote_update/data.txt')
+        os.system('echo 23 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_24(self):
-        os.system('echo 24 > services/remote_update/data.txt')
+        os.system('echo 24 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_25(self):
-        os.system('echo 25 > services/remote_update/data.txt')
+        os.system('echo 25 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_26(self):
-        os.system('echo 26 > services/remote_update/data.txt')
+        os.system('echo 26 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_27(self):
-        os.system('echo 27 > services/remote_update/data.txt')
+        os.system('echo 27 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_28(self):
-        os.system('echo 28 > services/remote_update/data.txt')
+        os.system('echo 28 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_29(self):
-        os.system('echo 29 > services/remote_update/data.txt')
+        os.system('echo 29 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_30(self):
-        os.system('echo 30 > services/remote_update/data.txt')
+        os.system('echo 30 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_31(self):
-        os.system('echo 31 > services/remote_update/data.txt')
+        os.system('echo 31 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_32(self):
-        os.system('echo 32 > services/remote_update/data.txt')
+        os.system('echo 32 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_33(self):
-        os.system('echo 33 > services/remote_update/data.txt')
+        os.system('echo 33 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_34(self):
-        os.system('echo 34 > services/remote_update/data.txt')
+        os.system('echo 34 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_35(self):
-        os.system('echo 35 > services/remote_update/data.txt')
+        os.system('echo 35 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_36(self):
-        os.system('echo 36 > services/remote_update/data.txt')
+        os.system('echo 36 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_37(self):
-        os.system('echo 37 > services/remote_update/data.txt')
+        os.system('echo 37 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_38(self):
-        os.system('echo 38 > services/remote_update/data.txt')
+        os.system('echo 38 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     def remote_control_39(self):
-        os.system('echo 39 > services/remote_update/data.txt')
+        os.system('echo 39 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
     #def remote_control_40(self):
         #os.system('echo 40 > services//remote_update.txt')
                     
