@@ -121,8 +121,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.file_btn.setIconSize(self.size)
         
         # Interact icon
-        self.interact_btn.setIcon(QIcon('.services/images/interact.png'))
-        self.interact_btn.setIconSize(self.size)
+        # Interact button not needed anymore
+        # self.interact_btn.setIcon(QIcon('.services/images/interact.png'))
+        # self.interact_btn.setIconSize(self.size)
 
         # Screen share icon
         self.screen_share_btn.setIcon(QIcon('.services/images/share_screen.png'))
@@ -135,7 +136,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # Contains the attribute reference name pause / play button [simplifies the code(Not necissary)] [global]
         
         # Contains the attribute reference name pause / play button [simplifies the code(Not necissary)] [global]
-        self.pc_ = self.pc_select_box.currentText()
+        # self.pc_ = self.pc_select_box.currentText()
         
         
         # Reference for each PC's IP [basically converting a pc ID -> Numeric Value]
@@ -152,9 +153,13 @@ class MainWindow(QtWidgets.QMainWindow):
         
         # Listening for the pause button to be clicked [main window 'tab1'] 
         self.pause_btn.clicked.connect(self.pause_func)
+        # neoneffect under pause button when selected
+        self.pause_btn.clicked.connect(self.signal_pause)
 
         # Lisatening for the play button to be lcicked [main window 'tab1']
         self.play_btn.clicked.connect(self.play_func)
+        # neon effect under play button when selected
+        self.play_btn.clicked.connect(self.signal_play)
         
         # Listening for stopping and starting machines [main window 'tab1']
         #Setting the button to checkable 
@@ -169,6 +174,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.file_btn.clicked.connect(self.nav_open)
 
         self.blank_btn.clicked.connect(self.lock_pc)
+        # Neon effect under blank button when clicked
+        self.blank_btn.clicked.connect(self.signal_blank)
         
         self.remote_btn_4.clicked.connect(self.remote_control_4)
         self.remote_btn_5.clicked.connect(self.remote_control_5)
@@ -228,12 +235,12 @@ class MainWindow(QtWidgets.QMainWindow):
         
             with open('.services/ip-ping/ping_{}.txt'.format(i), 'r') as file:
                 
-                data = file.read().replace('\n', '')
+                self.data = file.read().replace('\n', '')
             
                 currtent_machine = 'self.PC_{}'.format(i)
                 current_label = 'self.label_{}'.format(i)
                         
-                if data == 'True':
+                if self.data == 'True':
                     
                     eval(currtent_machine).setStyleSheet('background-color: lightgreen')
                     eval(current_label).setPixmap(QPixmap(".services/image-tracking/pc_{}.png".format(i)).scaled(330,250,Qt.IgnoreAspectRatio))
@@ -411,6 +418,81 @@ class MainWindow(QtWidgets.QMainWindow):
             # Sets the button pause / play -> green when machine is turned on
             self.pp_btn.setStyleSheet("background-color: lightgreen")
             
+    # Neon effect under button
+    def signal_play(self):
+        
+        if self.play_btn.isChecked:
+            
+            self.play_indicator.setStyleSheet("background-color: lightblue")
+            self.pause_btn.setChecked(False)
+            self.blank_btn.setChecked(False)
+            
+            self.pause_indicator.setStyleSheet("background-color: #890ff")
+            self.lock_indicator.setStyleSheet("background-color: #890ff")
+            
+        else:
+            
+            pass
+        
+    # Neon effect under button
+    def signal_pause(self):
+        
+        if self.pause_btn.isChecked:
+            
+            self.pause_indicator.setStyleSheet("background-color: lightblue")
+            self.play_btn.setChecked(False)
+            self.blank_btn.setChecked(False)
+            
+            self.play_indicator.setStyleSheet("background-color: #890ff")
+            self.lock_indicator.setStyleSheet("background-color: #890ff")
+            
+        else:
+            
+            pass
+    
+        
+        
+    def signal_blank(self):
+        
+        if self.blank_btn.isChecked:
+            
+            self.lock_indicator.setStyleSheet("background-color: lightblue")
+            self.pause_btn.setChecked(False)
+            self.play_btn.setChecked(False)
+            
+            self.play_indicat# Neon effect under button
+    def signal_play(self):
+        
+        if self.play_btn.isChecked:
+            
+            self.play_indicator.setStyleSheet("background-color: lightblue")
+            self.pause_btn.setChecked(False)
+            self.blank_btn.setChecked(False)
+            
+            self.pause_indicator.setStyleSheet("background-color: #890ff")
+            self.lock_indicator.setStyleSheet("background-color: #890ff")
+            
+        else:
+            
+            passor.setStyleSheet("background-color: #890ff")
+            self.pause_indicator.setStyleSheet("background-color: #890ff")
+        
+        
+        # Neon effect under button
+    def signal_play(self):
+        
+        if self.play_btn.isChecked:
+            
+            self.play_indicator.setStyleSheet("background-color: lightblue")
+            self.pause_btn.setChecked(False)
+            self.blank_btn.setChecked(False)
+            
+            self.pause_indicator.setStyleSheet("background-color: #890ff")
+            self.lock_indicator.setStyleSheet("background-color: #890ff")
+            
+        else:
+            
+            pass
             
     def nav_open(self):
             
