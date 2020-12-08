@@ -82,9 +82,12 @@ class MainWindow(QtWidgets.QMainWindow):
         uic.loadUi('form.ui', self)
         
         
+        # Main -> logo
+        self.main_logo.setPixmap(QPixmap(".services/images/main_logo.png").scaled(70,50,Qt.IgnoreAspectRatio))
+        
         # Initializing icons
         # On / Off button
-        self.size = QSize(49,49)
+        self.size = QSize(25,25)
         self.start_btn.setIcon(QIcon('.services/images/start.png'))
         self.start_btn.setIconSize(self.size)
         
@@ -153,13 +156,11 @@ class MainWindow(QtWidgets.QMainWindow):
         
         # Listening for the pause button to be clicked [main window 'tab1'] 
         self.pause_btn.clicked.connect(self.pause_func)
-        # neoneffect under pause button when selected
-        self.pause_btn.clicked.connect(self.signal_pause)
+       
 
         # Lisatening for the play button to be lcicked [main window 'tab1']
         self.play_btn.clicked.connect(self.play_func)
-        # neon effect under play button when selected
-        self.play_btn.clicked.connect(self.signal_play)
+       
         
         # Listening for stopping and starting machines [main window 'tab1']
         #Setting the button to checkable 
@@ -174,8 +175,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.file_btn.clicked.connect(self.nav_open)
 
         self.blank_btn.clicked.connect(self.lock_pc)
-        # Neon effect under blank button when clicked
-        self.blank_btn.clicked.connect(self.signal_blank)
         
         self.remote_btn_4.clicked.connect(self.remote_control_4)
         self.remote_btn_5.clicked.connect(self.remote_control_5)
@@ -418,81 +417,7 @@ class MainWindow(QtWidgets.QMainWindow):
             # Sets the button pause / play -> green when machine is turned on
             self.pp_btn.setStyleSheet("background-color: lightgreen")
             
-    # Neon effect under button
-    def signal_play(self):
         
-        if self.play_btn.isChecked:
-            
-            self.play_indicator.setStyleSheet("background-color: lightblue")
-            self.pause_btn.setChecked(False)
-            self.blank_btn.setChecked(False)
-            
-            self.pause_indicator.setStyleSheet("background-color: #890ff")
-            self.lock_indicator.setStyleSheet("background-color: #890ff")
-            
-        else:
-            
-            pass
-        
-    # Neon effect under button
-    def signal_pause(self):
-        
-        if self.pause_btn.isChecked:
-            
-            self.pause_indicator.setStyleSheet("background-color: lightblue")
-            self.play_btn.setChecked(False)
-            self.blank_btn.setChecked(False)
-            
-            self.play_indicator.setStyleSheet("background-color: #890ff")
-            self.lock_indicator.setStyleSheet("background-color: #890ff")
-            
-        else:
-            
-            pass
-    
-        
-        
-    def signal_blank(self):
-        
-        if self.blank_btn.isChecked:
-            
-            self.lock_indicator.setStyleSheet("background-color: lightblue")
-            self.pause_btn.setChecked(False)
-            self.play_btn.setChecked(False)
-            
-            self.play_indicat# Neon effect under button
-    def signal_play(self):
-        
-        if self.play_btn.isChecked:
-            
-            self.play_indicator.setStyleSheet("background-color: lightblue")
-            self.pause_btn.setChecked(False)
-            self.blank_btn.setChecked(False)
-            
-            self.pause_indicator.setStyleSheet("background-color: #890ff")
-            self.lock_indicator.setStyleSheet("background-color: #890ff")
-            
-        else:
-            
-            passor.setStyleSheet("background-color: #890ff")
-            self.pause_indicator.setStyleSheet("background-color: #890ff")
-        
-        
-        # Neon effect under button
-    def signal_play(self):
-        
-        if self.play_btn.isChecked:
-            
-            self.play_indicator.setStyleSheet("background-color: lightblue")
-            self.pause_btn.setChecked(False)
-            self.blank_btn.setChecked(False)
-            
-            self.pause_indicator.setStyleSheet("background-color: #890ff")
-            self.lock_indicator.setStyleSheet("background-color: #890ff")
-            
-        else:
-            
-            pass
             
     def nav_open(self):
             

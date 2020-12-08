@@ -30,7 +30,7 @@
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:  #890ff;  color: white;</string>
+       <string notr="true">background-color:  #1890ff;  color: white;</string>
       </property>
       <property name="currentIndex">
        <number>0</number>
@@ -40,14 +40,211 @@
         <string>Students</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_44">
+        <item row="2" column="0">
+         <widget class="QTabWidget" name="tabWidget">
+          <property name="maximumSize">
+           <size>
+            <width>112</width>
+            <height>800</height>
+           </size>
+          </property>
           <property name="styleSheet">
-           <string notr="true">color: white;</string>
+           <string notr="true">border: solid 3 blue; background-color: #1890ff;</string>
           </property>
-          <property name="text">
-           <string>Control Panel</string>
+          <property name="currentIndex">
+           <number>0</number>
           </property>
+          <widget class="QWidget" name="tab1">
+           <attribute name="title">
+            <string/>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="6" column="0">
+             <widget class="QPushButton" name="refresh_btn">
+              <property name="minimumSize">
+               <size>
+                <width>94</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Droid Sans</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: white; background-color: #1890ff;</string>
+              </property>
+              <property name="text">
+               <string>Refresh </string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QPushButton" name="blank_btn">
+              <property name="minimumSize">
+               <size>
+                <width>94</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Droid Sans</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: white; background-color: #1890ff;</string>
+              </property>
+              <property name="text">
+               <string>Lock       </string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QPushButton" name="pause_btn">
+              <property name="minimumSize">
+               <size>
+                <width>94</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Droid Sans</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: white; background-color: #1890ff;</string>
+              </property>
+              <property name="text">
+               <string>Pause     </string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="0">
+             <widget class="QPushButton" name="start_btn">
+              <property name="minimumSize">
+               <size>
+                <width>94</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Droid Sans</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: white; background-color: #1890ff;</string>
+              </property>
+              <property name="text">
+               <string>On/Off  </string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QPushButton" name="screen_share_btn">
+              <property name="minimumSize">
+               <size>
+                <width>94</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Droid Sans</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: white; background-color: #1890ff;</string>
+              </property>
+              <property name="text">
+               <string>Share    </string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QPushButton" name="file_btn">
+              <property name="minimumSize">
+               <size>
+                <width>94</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Droid Sans</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: white; background-color: #1890ff;</string>
+              </property>
+              <property name="text">
+               <string> File       </string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QPushButton" name="play_btn">
+              <property name="minimumSize">
+               <size>
+                <width>94</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Droid Sans</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: #1890ff; color: white; outline-color: white; </string>
+              </property>
+              <property name="text">
+               <string> Play       </string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabWidgetPage2">
+           <attribute name="title">
+            <string/>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout"/>
+          </widget>
          </widget>
         </item>
         <item row="2" column="1">
@@ -59,7 +256,7 @@
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: lightblue;</string>
+           <string notr="true">background-color: #fff;</string>
           </property>
           <property name="widgetResizable">
            <bool>true</bool>
@@ -68,7 +265,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-817</y>
+             <y>0</y>
              <width>1573</width>
              <height>1500</height>
             </rect>
@@ -116,13 +313,13 @@
              <widget class="QFrame" name="PC_1">
               <property name="minimumSize">
                <size>
-                <width>300</width>
+                <width>250</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>570</width>
+                <width>250</width>
                 <height>400</height>
                </size>
               </property>
@@ -351,8 +548,14 @@
              <widget class="QFrame" name="PC_5">
               <property name="minimumSize">
                <size>
-                <width>50</width>
+                <width>250</width>
                 <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>250</width>
+                <height>16777215</height>
                </size>
               </property>
               <property name="frameShape">
@@ -364,6 +567,18 @@
               <layout class="QGridLayout" name="gridLayout_9">
                <item row="0" column="0">
                 <widget class="QLabel" name="label_5">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>160000</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
@@ -444,6 +659,18 @@
             </item>
             <item row="1" column="4">
              <widget class="QFrame" name="PC_4">
+              <property name="minimumSize">
+               <size>
+                <width>250</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>250</width>
+                <height>16777215</height>
+               </size>
+              </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -804,6 +1031,18 @@
             </item>
             <item row="1" column="1">
              <widget class="QFrame" name="PC_2">
+              <property name="minimumSize">
+               <size>
+                <width>250</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>250</width>
+                <height>16777215</height>
+               </size>
+              </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
               </property>
@@ -906,9 +1145,15 @@
             </item>
             <item row="1" column="3">
              <widget class="QFrame" name="PC_3">
+              <property name="minimumSize">
+               <size>
+                <width>250</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="maximumSize">
                <size>
-                <width>570</width>
+                <width>250</width>
                 <height>400</height>
                </size>
               </property>
@@ -1233,8 +1478,14 @@
              <widget class="QFrame" name="PC_6">
               <property name="minimumSize">
                <size>
-                <width>50</width>
+                <width>250</width>
                 <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>250</width>
+                <height>16777215</height>
                </size>
               </property>
               <property name="frameShape">
@@ -1331,379 +1582,11 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QTabWidget" name="tabWidget">
-          <property name="maximumSize">
-           <size>
-            <width>112</width>
-            <height>800</height>
-           </size>
+        <item row="0" column="0">
+         <widget class="QLabel" name="main_logo">
+          <property name="text">
+           <string/>
           </property>
-          <property name="styleSheet">
-           <string notr="true">border: none;</string>
-          </property>
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <widget class="QWidget" name="tab1">
-           <attribute name="title">
-            <string/>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_4">
-            <item row="10" column="0">
-             <widget class="QPushButton" name="refresh_btn">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>90</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color:  #890ff;  border: none;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="1">
-             <widget class="QLabel" name="label_40">
-              <property name="font">
-               <font>
-                <family>Droid Sans</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: white;</string>
-              </property>
-              <property name="text">
-               <string>Share</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QPushButton" name="pause_btn">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>90</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color:  #890ff;  border: none;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLabel" name="label_37">
-              <property name="font">
-               <font>
-                <family>Droid Sans</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: white;</string>
-              </property>
-              <property name="text">
-               <string>Pasue</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <widget class="Line" name="lock_indicator">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="10" column="1">
-             <widget class="QLabel" name="label_41">
-              <property name="minimumSize">
-               <size>
-                <width>60</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Droid Sans</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: white;</string>
-              </property>
-              <property name="text">
-               <string>refresh</string>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="1">
-             <widget class="QLabel" name="label_39">
-              <property name="font">
-               <font>
-                <family>Droid Sans</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: white;</string>
-              </property>
-              <property name="text">
-               <string>Send</string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="0">
-             <widget class="Line" name="send_indicator">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QPushButton" name="blank_btn">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>90</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color:  #890ff;  border: none;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="label">
-              <property name="font">
-               <font>
-                <family>Droid Sans</family>
-                <pointsize>12</pointsize>
-                <weight>50</weight>
-                <italic>false</italic>
-                <bold>false</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: white;</string>
-              </property>
-              <property name="text">
-               <string>Play</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QPushButton" name="play_btn">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>50</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color:  #890ff;  border: none;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QLabel" name="label_38">
-              <property name="font">
-               <font>
-                <family>Droid Sans</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: white;</string>
-              </property>
-              <property name="text">
-               <string>Lock</string>
-              </property>
-             </widget>
-            </item>
-            <item row="11" column="1">
-             <widget class="QLabel" name="label_42">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Droid Sans</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: white;</string>
-              </property>
-              <property name="text">
-               <string>Power</string>
-              </property>
-             </widget>
-            </item>
-            <item row="11" column="0">
-             <widget class="QPushButton" name="start_btn">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>90</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color:  #890ff; border: none;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="0">
-             <widget class="QPushButton" name="screen_share_btn">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>90</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color:  #890ff;  border: none;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="Line" name="play_indicator">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="Line" name="pause_indicator">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0">
-             <widget class="QPushButton" name="file_btn">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>50</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color:  #890ff;  border: none;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="9" column="0">
-             <widget class="Line" name="share_indicator">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tabWidgetPage2">
-           <attribute name="title">
-            <string/>
-           </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout"/>
-          </widget>
          </widget>
         </item>
        </layout>
