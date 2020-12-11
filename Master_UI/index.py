@@ -68,8 +68,10 @@ class file_stream(QtWidgets.QWidget):
         os.system('scp ')
 
 
+##########################################################
+# This is the dialogue box that pops up to create and OU #
+##########################################################
 
-# This is the dialogue box that pops up to create and OU
 class ou_loader(QtWidgets.QWidget):
 
     def __init__(self):
@@ -117,8 +119,85 @@ class ou_loader(QtWidgets.QWidget):
               # Passing the final command to add the OU
               os.system("sudo samba-tool ou create OU={}".format(self.ou_name))
 
+#####################################
+# This is the group creation window # 
+#####################################
 
+class group_loader(QtWidgets.QWidget):
 
+    def __init__(self):
+        super().__init__()
+        
+        # Load the diaglog from it's location
+        uic.loadUi('/home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/group_creation/group_create.ui', self)
+        
+        # Pre loading current OU's 
+        os.system("sudo samba-tool ou list > /home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/group_creation/verify_existing/ou_list.txt")
+        
+        # getting user input for group name
+        self.grp_name = self.group_name_input.text()
+        
+        # Getting drop down value for OU
+        
+    def create_new_group(self):
+        
+        file = open("/home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/group_creation/verify_existing/ou_list.txt", "r")
+        line_count = 0
+        for line in file:
+            if line != "\n":
+                line_count += 1 
+        file.close()
+        
+        i = 0 
+        
+        while i < line_count: 
+            
+            
+            # Navigating -> opening the file that stores the verif key
+            with open('/home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/group_creation/verify_existing/ou_list.txt', 'r') as file:
+                
+                # reading the first line of the document (verif key) 
+                data = file.read().replace('\n', '')
+            
+                self.ou_existing.addItem(data)
+            
+                continue
+        
+    
+        # Bash command to verify the group doesn't already exist.
+        os.system('[[ $(sudo samba-tool ou list | grep {} | sed -n "$1{{p;q}}" )  != "group={}" ]] && echo "false" > /home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/group_creation/verify_existing/t-f.txt || echo "true" > /home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/group_creation/verify_existing/t-f.txt'.format(self.grp_name, self.grp_name))
+        
+        
+        # Visual verification of the verification 
+        os.system("cat /home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/group_creation/verify_existing/t-f.txt")
+    
+        
+        # Navigating -> opening the file that stores the verif key
+        with open('/home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/ou_creation/verify_existing/t-f.txt', 'r') as file:
+            
+            
+            # reading the first line of the document (verif key) 
+            data = file.read().replace('\n', '')
+            
+            # If the data is true and the OU already exists, this will throw and error message to the ui  
+            if data == 'false':
+                
+
+                # Changing default text color to warning red
+                self.output_text.setStyleSheet("color: red;")
+
+                # Displaying Error text. 
+                self.output_text.setText("This Name is already in use!")
+        
+            # Passing the command if the name doesn't already exist.
+            else:
+
+                # Displaying success message
+                self.output_text.setText("Group has been created successfully")
+
+                # Passing the final command to add the OU
+                os.system("sudo samba-tool group add {} --groupou=OU={}".format(self.grp_name, ))
+    
         
 # Main QWindow
 # Defining the start of the main window, this is the window that will always be visable
@@ -201,6 +280,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Lauch oi ui
         self.ou_launch.clicked.connect(self.uo_loader)
+        
+        # launch group creation
+        self.create_group.clicked.connect(self.group_create_loader)
         
         #-----------------------#
         # Event Listeners # 
@@ -480,6 +562,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ou_location =  ou_loader()
         self.ou_location.show()
             
+            
+    def group_create_loader(self):
+        self.group_location = group_loader()
+        self.group_location.show()
+        
+        
 def main():
     app = QtWidgets.QApplication(sys.argv)
     main = MainWindow()
