@@ -14,102 +14,118 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: lightgrey; border: 3 solid white </string>
+   <string notr="true">background-color:  #1890ff; </string>
   </property>
   <widget class="QLineEdit" name="file_url_input">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>80</y>
-     <width>301</width>
+     <width>341</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #fff;</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>50</y>
-     <width>121</width>
+     <x>120</x>
+     <y>30</y>
+     <width>151</width>
      <height>19</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans</family>
+     <pointsize>13</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;</string>
+   </property>
    <property name="text">
-    <string>Etner file location</string>
+    <string>Enter File Location </string>
    </property>
   </widget>
   <widget class="QPushButton" name="open_pacman_btn">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>80</y>
-     <width>30</width>
+     <x>80</x>
+     <y>120</y>
+     <width>100</width>
      <height>28</height>
     </rect>
    </property>
+   <property name="minimumSize">
+    <size>
+     <width>100</width>
+     <height>0</height>
+    </size>
+   </property>
    <property name="maximumSize">
     <size>
-     <width>30</width>
+     <width>100</width>
      <height>30</height>
     </size>
    </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans</family>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::WheelFocus</enum>
+   </property>
    <property name="styleSheet">
-    <string notr="true">background-color: lightgrey; border: none</string>
+    <string notr="true">background-color:  #1890ff; border: none; color: #fff;</string>
    </property>
    <property name="text">
-    <string/>
+    <string>Search</string>
    </property>
   </widget>
   <widget class="QPushButton" name="send_file_btn">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>170</y>
-     <width>75</width>
-     <height>75</height>
+     <x>220</x>
+     <y>120</y>
+     <width>100</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="minimumSize">
     <size>
-     <width>75</width>
-     <height>75</height>
+     <width>100</width>
+     <height>30</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>75</width>
-     <height>75</height>
+     <width>100</width>
+     <height>30</height>
     </size>
    </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans</family>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
    <property name="styleSheet">
-    <string notr="true">background-color: lightgrey; border: none</string>
+    <string notr="true">background-color:  #1890ff;  border: none; color: #fff;</string>
    </property>
    <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="pc_select_file">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>200</y>
-     <width>141</width>
-     <height>51</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>70</x>
-     <y>170</y>
-     <width>111</width>
-     <height>19</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Select Reciever</string>
+    <string>Send</string>
    </property>
   </widget>
  </widget>

@@ -52,7 +52,7 @@
            <string notr="true">border: solid 3 blue; background-color: #1890ff;</string>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tab1">
            <attribute name="title">
@@ -80,7 +80,7 @@
                <string notr="true">color: white; background-color: #1890ff;</string>
               </property>
               <property name="text">
-               <string>Refresh </string>
+               <string> Refresh </string>
               </property>
              </widget>
             </item>
@@ -105,7 +105,7 @@
                <string notr="true">color: white; background-color: #1890ff;</string>
               </property>
               <property name="text">
-               <string>Lock       </string>
+               <string> Lock       </string>
               </property>
              </widget>
             </item>
@@ -130,7 +130,7 @@
                <string notr="true">color: white; background-color: #1890ff;</string>
               </property>
               <property name="text">
-               <string>Pause     </string>
+               <string> Pause     </string>
               </property>
              </widget>
             </item>
@@ -155,7 +155,7 @@
                <string notr="true">color: white; background-color: #1890ff;</string>
               </property>
               <property name="text">
-               <string>On/Off  </string>
+               <string> On/Off  </string>
               </property>
              </widget>
             </item>
@@ -180,7 +180,7 @@
                <string notr="true">color: white; background-color: #1890ff;</string>
               </property>
               <property name="text">
-               <string>Share    </string>
+               <string> Share    </string>
               </property>
              </widget>
             </item>
@@ -205,7 +205,7 @@
                <string notr="true">color: white; background-color: #1890ff;</string>
               </property>
               <property name="text">
-               <string> File       </string>
+               <string>  File       </string>
               </property>
              </widget>
             </item>
@@ -233,7 +233,7 @@
                <string notr="true">background-color: #1890ff; color: white; outline-color: white; </string>
               </property>
               <property name="text">
-               <string> Play       </string>
+               <string>  Play       </string>
               </property>
              </widget>
             </item>
@@ -243,7 +243,73 @@
            <attribute name="title">
             <string/>
            </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout"/>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QPushButton" name="pushButton">
+              <property name="font">
+               <font>
+                <family>Droid Sans</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Creat User</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_2">
+              <property name="font">
+               <font>
+                <family>Droid Sans</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Creat Group</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="ou_launch">
+              <property name="font">
+               <font>
+                <family>Droid Sans</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>OU Create</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_4">
+              <property name="font">
+               <font>
+                <family>Droid Sans</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Reset Pass</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_3">
+              <property name="font">
+               <font>
+                <family>Droid Sans</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Remove</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </widget>
         </item>

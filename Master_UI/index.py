@@ -25,10 +25,10 @@ class file_stream(QtWidgets.QWidget):
        
         # Adding icons to the buttons
         # Gloabal size args
-        self.size= QSize(29,29)
-        self.bsize = QSize(74,74)
+        self.size= QSize(22,22)
+        self.bsize = QSize(22,22)
 
-        # Icon for opening file explorer button 
+        # Icon for opening file explorerebutton 
         self.open_pacman_btn.setIcon(QIcon('.services/images/file_select.png'))
         self.open_pacman_btn.setIconSize(self.size)
 
@@ -58,7 +58,6 @@ class file_stream(QtWidgets.QWidget):
 
         
     def send_file(self):
-
         # user reference ID
         self.t_user_id = t_data
 
@@ -67,8 +66,58 @@ class file_stream(QtWidgets.QWidget):
 
         # Initializing the system command
         os.system('scp ')
+
+
+
+# This is the dialogue box that pops up to create and OU
+class ou_loader(QtWidgets.QWidget):
+
+    def __init__(self):
+        super().__init__()
+
+        # Load the diaglog from it's location
+        uic.loadUi('.services/.dialogs/ou_creation/ou.ui', self)
         
+        # Takes user input "To creat a new OU"
+        self.ou_name = self.ou_name_input.text()
+       
+        # Calls OU creation function 
+        self.create_ou.clicked.connect(self.create_new_ou)
     
+    # Function for creation new OU on samaba server. 
+    def create_new_ou(self):
+
+       # Bash command, to verify if the OU name is in use or not. 
+       os.system('[[ $(sudo samba-tool ou list | grep OU={} | sed -n "$1{{p;q}}" )  != "OU={}" ]] && echo "false" > /home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/ou_creation/verify_existing/t-f.txt || echo "true" > /home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/ou_creation/verify_existing/t-f.txt'.format(self.ou_name, self.ou_name))
+       
+       # Visual verification of the verification 
+       os.system("cat /home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/ou_creation/verify_existing/t-f.txt")
+      
+       # Navigating -> opening the file that stores the verif key
+       with open('/home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/ou_creation/verify_existing/t-f.txt', 'r') as file:
+          
+          # reading the first line of the document (verif key) 
+          data = file.read().replace('\n', '')
+            
+          # If the data is true and the OU already exists, this will throw and error message to the ui  
+          if data == 'false':
+
+              # Changing default text color to warning red
+              self.output_text.setStyleSheet("color: red;")
+
+              # Displaying Error text. 
+              self.output_text.setText("This Name is already in use!")
+        
+          # Passing the command if the name doesn't already exist.
+          else:
+
+              # Displaying success message
+              self.output_text.setText("OU has been created successfully")
+
+              # Passing the final command to add the OU
+              os.system("sudo samba-tool ou create OU={}".format(self.ou_name))
+
+
 
         
 # Main QWindow
@@ -87,7 +136,7 @@ class MainWindow(QtWidgets.QMainWindow):
         
         # Initializing icons
         # On / Off button
-        self.size = QSize(25,25)
+        self.size = QSize(22,22)
         self.start_btn.setIcon(QIcon('.services/images/start.png'))
         self.start_btn.setIconSize(self.size)
         
@@ -99,7 +148,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.play_btn.setCheckable(True)
         self.play_btn.toggle()
 
-        # Making the start/stop btn checkable so we can keep track of wether it's been clicked or not
+        # Making the start/stop30 btn checkable so we can keep track of wether it's been clicked or not
         self.start_btn.setCheckable(True)
         self.start_btn.toggle()
         
@@ -149,6 +198,9 @@ class MainWindow(QtWidgets.QMainWindow):
         ##############
         #  Startup/refresh # 
         ##############
+
+        # Lauch oi ui
+        self.ou_launch.clicked.connect(self.uo_loader)
         
         #-----------------------#
         # Event Listeners # 
@@ -423,6 +475,10 @@ class MainWindow(QtWidgets.QMainWindow):
             
         self.w = file_stream()
         self.w.show()
+
+    def uo_loader(self):
+        self.ou_location =  ou_loader()
+        self.ou_location.show()
             
 def main():
     app = QtWidgets.QApplication(sys.argv)
