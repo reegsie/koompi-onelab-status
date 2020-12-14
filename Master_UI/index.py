@@ -129,7 +129,7 @@ class group_loader(QtWidgets.QWidget):
         super().__init__()
         
         # Load the diaglog from it's location
-        uic.loadUi('/home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/group_creation/group_create.ui', self)
+        uic.loadUi('.services/.dialogs/group_creation/group_create.ui', self)
         
         # Pre loading current OU's 
         os.system("sudo samba-tool ou list > /home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/group_creation/verify_existing/ou_list.txt")
@@ -197,6 +197,16 @@ class group_loader(QtWidgets.QWidget):
 
                 # Passing the final command to add the OU
                 os.system("sudo samba-tool group add {} --groupou=OU={}".format(self.grp_name, ))
+                
+# User creation UI
+class user_creat(QtWidgets.QWidget):
+
+    def __init__(self):
+        super().__init__()
+        
+        uic.loadUi('.services/.dialogs/user_creation/user_create.ui', self)
+        
+        
     
         
 # Main QWindow
@@ -259,6 +269,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # Screen share icon
         self.screen_share_btn.setIcon(QIcon('.services/images/share_screen.png'))
         self.screen_share_btn.setIconSize(self.size)
+        
 
         #++++++++++++++++++#
         # Global Variables #
@@ -283,6 +294,9 @@ class MainWindow(QtWidgets.QMainWindow):
         
         # launch group creation
         self.create_group.clicked.connect(self.group_create_loader)
+        
+        # User creation UI
+        self.user_creator.clicked.connect(self.creat_user)
         
         #-----------------------#
         # Event Listeners # 
@@ -557,15 +571,23 @@ class MainWindow(QtWidgets.QMainWindow):
             
         self.w = file_stream()
         self.w.show()
-
+    
+    # OU creation UI
     def uo_loader(self):
         self.ou_location =  ou_loader()
         self.ou_location.show()
             
-            
+    
+    # Group creation UI launcher
     def group_create_loader(self):
         self.group_location = group_loader()
         self.group_location.show()
+        
+    # User creation UI launcher
+    def creat_user(self):
+        
+        self.user_creat = user_creat()
+        self.user_creat.show()
         
         
 def main():

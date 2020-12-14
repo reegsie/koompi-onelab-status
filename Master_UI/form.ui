@@ -245,7 +245,7 @@
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="user_creator">
               <property name="font">
                <font>
                 <family>Droid Sans</family>
@@ -332,7 +332,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1573</width>
+             <width>1572</width>
              <height>1500</height>
             </rect>
            </property>
