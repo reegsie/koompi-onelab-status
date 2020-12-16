@@ -294,7 +294,7 @@ class MainWindow(QtWidgets.QMainWindow):
         
         
         # Main -> logo
-        self.main_logo.setPixmap(QPixmap("/opt/.services/images/main_logo.png").scaled(70,50,Qt.IgnoreAspectRatio))
+        # self.main_logo.setPixmap(QPixmap("/opt/.services/images/main_logo.png").scaled(70,50,Qt.IgnoreAspectRatio))
         
         # Initializing icons
         # On / Off button
