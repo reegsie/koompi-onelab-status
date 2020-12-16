@@ -1,4 +1,3 @@
-
 #! charset UTF 8
 
 from PyQt5 import QtWidgets, uic 
@@ -29,14 +28,14 @@ class file_stream(QtWidgets.QWidget):
         self.bsize = QSize(22,22)
 
         # Icon for opening file explorerebutton 
-        self.open_pacman_btn.setIcon(QIcon('.services/images/file_select.png'))
+        self.open_pacman_btn.setIcon(QIcon('/opt/.services/images/file_select.png'))
         self.open_pacman_btn.setIconSize(self.size)
 
         # Listening for the btn to be clicked
         self.open_pacman_btn.clicked.connect(self.select_file)
 
         # Icon for sending file btn
-        self.send_file_btn.setIcon(QIcon('.services/images/send.png'))
+        self.send_file_btn.setIcon(QIcon('/opt/.services/images/send.png'))
         self.send_file_btn.setIconSize(self.bsize)
        
         # Listens for send button to be clicked
@@ -52,7 +51,7 @@ class file_stream(QtWidgets.QWidget):
         
         for i in self.pc_ip:
         
-            with open('.services/ip-ping/ping_{}.txt'.format(i), 'r') as file:
+            with open('/opt/.services/ip-ping/ping_{}.txt'.format(i), 'r') as file:
                 
                 data = file.read().replace('\n', '')
 
@@ -67,6 +66,49 @@ class file_stream(QtWidgets.QWidget):
         # Initializing the system command
         os.system('scp ')
 
+class password_reset(QtWidgets.QWidget):
+
+    def __init__(self):
+        super().__init__()
+
+        # Load the diaglog from it's location
+        uic.loadUi('/opt/.services/.dialogs/reset/reset.ui', self)
+
+        # Sending users to file
+        # Pre loading current users
+        os.system("sudo samba-tool user list > /opt/.services/.dialogs/reset/user_list.txt")
+
+        # os.system("sed -i 's/...//' /opt/.services/.dialogs/reset/user_list.txt")
+
+        a_file = open("/opt/.services/.dialogs/reset/user_list.txt", "r")
+
+        list_of_lists = []
+        for line in a_file:
+            stripped_line = line.strip()
+            list_of_lists.append(stripped_line)
+
+        a_file.close()
+
+        print(list_of_lists)
+            
+        self.res_user_list.addItems(list_of_lists)
+
+        self.reset_pass_btn.clicked.connect(self.reset_password)
+
+    def reset_password(self):
+
+        # grepping user
+        self.user = self.res_user_list.currentText()
+
+        # Getting input from pass bo x
+        password = self.new_pass_input.text()
+
+        # Re-Confirming passwords are the same
+        repeat = self.repeat_password.text()
+
+        # sending reset password command to the command line\
+        os.system('echo -e "{}\n{}" | sudo smbpasswd -s -a {}'.format(password,repeat,self.user))
+
 
 ##########################################################
 # This is the dialogue box that pops up to create and OU #
@@ -78,10 +120,8 @@ class ou_loader(QtWidgets.QWidget):
         super().__init__()
 
         # Load the diaglog from it's location
-        uic.loadUi('.services/.dialogs/ou_creation/ou.ui', self)
+        uic.loadUi('/opt/.services/.dialogs/ou_creation/ou.ui', self)
         
-        # Takes user input "To creat a new OU"
-        self.ou_name = self.ou_name_input.text()
        
         # Calls OU creation function 
         self.create_ou.clicked.connect(self.create_new_ou)
@@ -89,35 +129,11 @@ class ou_loader(QtWidgets.QWidget):
     # Function for creation new OU on samaba server. 
     def create_new_ou(self):
 
-       # Bash command, to verify if the OU name is in use or not. 
-       os.system('[[ $(sudo samba-tool ou list | grep OU={} | sed -n "$1{{p;q}}" )  != "OU={}" ]] && echo "false" > /home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/ou_creation/verify_existing/t-f.txt || echo "true" > /home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/ou_creation/verify_existing/t-f.txt'.format(self.ou_name, self.ou_name))
-       
-       # Visual verification of the verification 
-       os.system("cat /home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/ou_creation/verify_existing/t-f.txt")
-      
-       # Navigating -> opening the file that stores the verif key
-       with open('/home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/ou_creation/verify_existing/t-f.txt', 'r') as file:
-          
-          # reading the first line of the document (verif key) 
-          data = file.read().replace('\n', '')
-            
-          # If the data is true and the OU already exists, this will throw and error message to the ui  
-          if data == 'false':
-
-              # Changing default text color to warning red
-              self.output_text.setStyleSheet("color: red;")
-
-              # Displaying Error text. 
-              self.output_text.setText("This Name is already in use!")
+        # Takes user input "To creat a new OU"
+        self.ou_name = self.ou_name_input.text()
         
-          # Passing the command if the name doesn't already exist.
-          else:
-
-              # Displaying success message
-              self.output_text.setText("OU has been created successfully")
-
-              # Passing the final command to add the OU
-              os.system("sudo samba-tool ou create OU={}".format(self.ou_name))
+        # Passing the final command to add the OU
+        os.system("sudo samba-tool ou create OU={}".format(self.ou_name))
 
 #####################################
 # This is the group creation window # 
@@ -129,84 +145,141 @@ class group_loader(QtWidgets.QWidget):
         super().__init__()
         
         # Load the diaglog from it's location
-        uic.loadUi('.services/.dialogs/group_creation/group_create.ui', self)
+        uic.loadUi('/opt/.services/.dialogs/group_creation/group_create.ui', self)
         
         # Pre loading current OU's 
-        os.system("sudo samba-tool ou list > /home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/group_creation/verify_existing/ou_list.txt")
+        os.system("sudo samba-tool ou list > /opt/.services/.dialogs/group_creation/verify_existing/ou_list.txt")
+
+        os.system("sed -i 's/...//' /opt/.services/.dialogs/group_creation/verify_existing/ou_list.txt")
+
+        a_file = open("/opt/.services/.dialogs/group_creation/verify_existing/ou_list.txt", "r")
+
+        list_of_lists = []
+        for line in a_file:
+            stripped_line = line.strip()
+            list_of_lists.append(stripped_line)
+
+        a_file.close()
+
+        print(list_of_lists)
+
+        # list of all existing OU's    
+        self.ou_existing.addItems(list_of_lists)
+
+        # Send info button
+        self.grp_creat_btn.clicked.connect(self.create_new_group)
+
+    def create_new_group(self):
         
         # getting user input for group name
         self.grp_name = self.group_name_input.text()
-        
+
         # Getting drop down value for OU
-        
-    def create_new_group(self):
-        
-        file = open("/home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/group_creation/verify_existing/ou_list.txt", "r")
-        line_count = 0
-        for line in file:
-            if line != "\n":
-                line_count += 1 
-        file.close()
-        
-        i = 0 
-        
-        while i < line_count: 
-            
-            
-            # Navigating -> opening the file that stores the verif key
-            with open('/home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/group_creation/verify_existing/ou_list.txt', 'r') as file:
-                
-                # reading the first line of the document (verif key) 
-                data = file.read().replace('\n', '')
-            
-                self.ou_existing.addItem(data)
-            
-                continue
-        
+        self.domain = self.ou_existing.currentText()
     
         # Bash command to verify the group doesn't already exist.
-        os.system('[[ $(sudo samba-tool ou list | grep {} | sed -n "$1{{p;q}}" )  != "group={}" ]] && echo "false" > /home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/group_creation/verify_existing/t-f.txt || echo "true" > /home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/group_creation/verify_existing/t-f.txt'.format(self.grp_name, self.grp_name))
-        
-        
-        # Visual verification of the verification 
-        os.system("cat /home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/group_creation/verify_existing/t-f.txt")
-    
-        
-        # Navigating -> opening the file that stores the verif key
-        with open('/home/alarm/Documents/projects/Koompi_Stuff/koompi-onelab-status/Master_UI/.services/.dialogs/ou_creation/verify_existing/t-f.txt', 'r') as file:
-            
-            
-            # reading the first line of the document (verif key) 
-            data = file.read().replace('\n', '')
-            
-            # If the data is true and the OU already exists, this will throw and error message to the ui  
-            if data == 'false':
-                
+        # Displaying success message
+        self.output_text.setText("Group has been created successfully")
 
-                # Changing default text color to warning red
-                self.output_text.setStyleSheet("color: red;")
+        # Passing the final command to add the OU
+        os.system("sudo samba-tool group add {} --groupou=OU={}".format(self.grp_name, self.domain))
 
-                # Displaying Error text. 
-                self.output_text.setText("This Name is already in use!")
+
+class remove_ui(QtWidgets.QWidget):
+
+    def __init__(self):
+        super().__init__()
         
-            # Passing the command if the name doesn't already exist.
-            else:
+        # Load the diaglog from it's location
+        uic.loadUi('/opt/.services/.dialogs/remove/remove.ui', self)
 
-                # Displaying success message
-                self.output_text.setText("Group has been created successfully")
+        self.remove_button.clicked.connect(self.remove_function)
 
-                # Passing the final command to add the OU
-                os.system("sudo samba-tool group add {} --groupou=OU={}".format(self.grp_name, ))
-                
+
+    def remove_function(self):
+
+        # user input
+        self.del_name = self.name_remove.text()
+
+        # Variable that updates wether group or user box's are selected
+        self.select = ''
+
+        # Function that changes the previous variable
+        if self.user_box.isChecked():
+
+            self.select = 'user'
+
+        elif self.group_box.isChecked():
+
+            self.select = 'group'
+
+        # Removal CLI command
+        os.system('sudo samba-tool {} delete {}'.format(self.select, self.del_name))
+
 # User creation UI
 class user_creat(QtWidgets.QWidget):
 
     def __init__(self):
         super().__init__()
         
-        uic.loadUi('.services/.dialogs/user_creation/user_create.ui', self)
+        uic.loadUi('/opt/.services/.dialogs/user_creation/user_create.ui', self)
+
+        # Pre loading current OU's 
+        os.system("sudo -S <<< 123 samba-tool group list > /opt/.services/.dialogs/user_creation/group_list.txt")
+
+        # os.system("sed -i 's/...//' /opt/.services/.dialogs/group_creation/verify_existing/ou_list.txt")
+
+        a_file = open("/opt/.services/.dialogs/user_creation/group_list.txt", "r")
+
+        list_of_lists = []
+        for line in a_file:
+            stripped_line = line.strip()
+            list_of_lists.append(stripped_line)
+
+        a_file.close()
+
+        print(list_of_lists)
+
+        # Listing all active users    
+        self.group_list.addItems(list_of_lists)
+
+        # ouputting domain to text file 
+        os.system("sudo -S <<< 123 samba-tool domain info 127.0.0.1 | grep Domain | awk -F':' '{print $2}' > /opt/.services/.dialogs/user_creation/domain.txt")
+
+        os.system("sed -i 's/^ *//g' /opt/.services/.dialogs/user_creation/domain.txt")
+
+        with open('/opt/.services/.dialogs/user_creation/domain.txt', 'r') as file:
+                
+                self.domain = file.read().replace('\n', '')
+
+        self.creat_user_btn.clicked.connect(self.user_init)
+
+    def user_init(self):
+
+        # Taking username input
+        self.username = self.user_name_input.text()
+
+        # Taking first name
+        self.name = self.first_name_input.text()
+
+        # Surname input
+        self.surname = self.surname_input.text()
+
+        # Grepping all groups
+        self.group_list = self.group_list.currentText()
+
+        # password input
+        self.password = self.password_input.text() 
+
+        # user creation script
+        os.system('sudo -S <<< 123 samba-tool user create {} {} --profile-path=\\\\{}\\profiles\\{} --script-path=logon.bat --home-drive=G --home-directory=\\\\{}\\{} --given-name={} --surname={} --unix-home=/home/{}/{}'.format(self.username, self.password, self.domain, self.username, self.domain, self.username, self.name, self.surname, self.domain, self.username))
         
-        
+
+        os.system('sudo -S <<< 123 samba-tool group addmembers {} {} && sudo -S <<< 123 samba-tool group addmembers network {} && sudo -S <<< 123 samba-tool group addmembers video {} && sudo -S <<< 123 samba-tool group addmembers storage {} && sudo -S <<< 123 samba-tool group addmembers lp {} && sudo -S <<< 123 samba-tool group addmembers audio {}'.format(self.group_list,self.username,self.username,self.username,self.username,self.username,self.username))
+
+        time.sleep(3)
+
+        os.system('sudo -S <<< 123 mkdir -p /klab/samba/home/{} && sudo -S <<< 123 chown -R {}:{} /klab/samba/home/{} && sudo -S <<< 123 chmod 700 /klab/samba/home/{}'.format(self.username, self.username,self.group_list,self.username,self.username))
     
         
 # Main QWindow
@@ -221,12 +294,12 @@ class MainWindow(QtWidgets.QMainWindow):
         
         
         # Main -> logo
-        self.main_logo.setPixmap(QPixmap(".services/images/main_logo.png").scaled(70,50,Qt.IgnoreAspectRatio))
+        self.main_logo.setPixmap(QPixmap("/opt/.services/images/main_logo.png").scaled(70,50,Qt.IgnoreAspectRatio))
         
         # Initializing icons
         # On / Off button
         self.size = QSize(22,22)
-        self.start_btn.setIcon(QIcon('.services/images/start.png'))
+        self.start_btn.setIcon(QIcon('/opt/.services/images/start.png'))
         self.start_btn.setIconSize(self.size)
         
         # Making the pause button checkable
@@ -242,23 +315,23 @@ class MainWindow(QtWidgets.QMainWindow):
         self.start_btn.toggle()
         
         # Play button
-        self.play_btn.setIcon(QIcon('.services/images/play.png'))
+        self.play_btn.setIcon(QIcon('/opt/.services/images/play.png'))
         self.play_btn.setIconSize(self.size)
         
         # Pause buttons
-        self.pause_btn.setIcon(QIcon('.services/images/pause.png'))
+        self.pause_btn.setIcon(QIcon('/opt/.services/images/pause.png'))
         self.pause_btn.setIconSize(self.size)
         
         # Pause buttons
-        self.refresh_btn.setIcon(QIcon('.services/images/refresh.png'))
+        self.refresh_btn.setIcon(QIcon('/opt/.services/images/refresh.png'))
         self.refresh_btn.setIconSize(self.size)
         
         # Blank out screens
-        self.blank_btn.setIcon(QIcon('.services/images/blank.png'))
+        self.blank_btn.setIcon(QIcon('/opt/.services/images/blank.png'))
         self.blank_btn.setIconSize(self.size)
         
         #  File menu Icon
-        self.file_btn.setIcon(QIcon('.services/images/file_transfer.png'))
+        self.file_btn.setIcon(QIcon('/opt/.services/images/file_transfer.png'))
         self.file_btn.setIconSize(self.size)
         
         # Interact icon
@@ -267,7 +340,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # self.interact_btn.setIconSize(self.size)
 
         # Screen share icon
-        self.screen_share_btn.setIcon(QIcon('.services/images/share_screen.png'))
+        self.screen_share_btn.setIcon(QIcon('/opt/.services/images/share_screen.png'))
         self.screen_share_btn.setIconSize(self.size)
         
 
@@ -297,6 +370,12 @@ class MainWindow(QtWidgets.QMainWindow):
         
         # User creation UI
         self.user_creator.clicked.connect(self.creat_user)
+
+        # OU, Group, User
+        self.remove_btn.clicked.connect(self.remove_ui)
+
+        # password reset dialog
+        self.reset_pass_btn.clicked.connect(self.pass_reset)
         
         #-----------------------#
         # Event Listeners # 
@@ -380,7 +459,7 @@ class MainWindow(QtWidgets.QMainWindow):
             ##################################
         
         
-            with open('.services/ip-ping/ping_{}.txt'.format(i), 'r') as file:
+            with open('/opt/.services/ip-ping/ping_{}.txt'.format(i), 'r') as file:
                 
                 self.data = file.read().replace('\n', '')
             
@@ -416,7 +495,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.pause_btn.setEnabled(False)
 
         # Calling the thread that will handle sending the request to pause screens
-        os.system('cd .services/executables/ && ./run_disable.bin')
+        os.system('cd /opt/.services/executables/ && ./run_disable.bin')
 
     def play_func(self):
         
@@ -424,13 +503,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.pause_btn.setEnabled(True)
 
         # Calling the thread the will handle re activating the perifrials
-        os.system('cd .services/executables && ./run_enable.bin')
+        os.system('cd /opt/.services/executables && ./run_enable.bin')
 
     def lock_pc(self):
 
         self.pause_btn.setEnabled(False)
 
-        os.system('cd .services/executables && ./run_lock.bin')
+        os.system('cd /opt/.services/executables && ./run_lock.bin')
 
     # for tracking the status of the start button (checked or not checked)
     def on_off_switch(self):
@@ -451,77 +530,77 @@ class MainWindow(QtWidgets.QMainWindow):
 
     # Remote control
     def remote_control_4(self):
-        os.system('echo 4 > .services/remote_update/data.txt && cd .services && ./remote_init.sh')
+        os.system('echo 4 > /opt/.services/remote_update/data.txt && cd /opt/.services && ./remote_init.sh')
     def remote_control_5(self):
-        os.system('echo 5 > .services/remote_update/data.txt && cd .services && ./remote_init.sh')
+        os.system('echo 5 > /opt/.services/remote_update/data.txt && cd /opt/.services && ./remote_init.sh')
     def remote_control_6(self):
-        os.system('echo 6 > .services/remote_update/data.txt && cd .services && ./remote_init.sh')
+        os.system('echo 6 > /opt/.services/remote_update/data.txt && cd /opt/.services && ./remote_init.sh')
     def remote_control_7(self):
-        os.system('echo 7 > .services/remote_update/data.txt && cd .services && ./remote_init.sh')
+        os.system('echo 7 > /opt/.services/remote_update/data.txt && cd /opt/.services && ./remote_init.sh')
     def remote_control_8(self):
-        os.system('echo 8 > .services/remote_update/data.txt && cd .services && ./remote_init.sh')
+        os.system('echo 8 > /opt/.services/remote_update/data.txt && cd /opt/.services && ./remote_init.sh')
     def remote_control_9(self):
-        os.system('echo 9 > .services/remote_update/data.txt && cd .services && ./remote_init.sh')
+        os.system('echo 9 > /opt/.services/remote_update/data.txt && cd /opt/.services && ./remote_init.sh')
     def remote_control_10(self):
-        os.system('echo 10 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 10 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_11(self):
-        os.system('echo 11 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 11 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_12(self):
-        os.system('echo 12 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 12 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_13(self):
-        os.system('echo 13 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 13 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_14(self):
-        os.system('echo 14 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 14 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_15(self):
-        os.system('echo 15 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 15 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_16(self):
-        os.system('echo 16 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 16 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_17(self):
-        os.system('echo 17 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 17 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_18(self):
-        os.system('echo 18 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 18 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_19(self):
-        os.system('echo 19 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 19 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_20(self):
-        os.system('echo 20 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 20 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_21(self):
-        os.system('echo 21 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 21 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_22(self):
-        os.system('echo 22 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 22 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_23(self):
-        os.system('echo 23 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 23 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_24(self):
-        os.system('echo 24 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 24 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_25(self):
-        os.system('echo 25 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 25 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_26(self):
-        os.system('echo 26 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 26 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_27(self):
-        os.system('echo 27 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 27 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_28(self):
-        os.system('echo 28 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 28 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_29(self):
-        os.system('echo 29 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 29 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_30(self):
-        os.system('echo 30 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 30 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_31(self):
-        os.system('echo 31 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 31 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_32(self):
-        os.system('echo 32 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 32 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_33(self):
-        os.system('echo 33 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 33 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_34(self):
-        os.system('echo 34 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 34 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_35(self):
-        os.system('echo 35 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 35 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_36(self):
-        os.system('echo 36 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 36 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_37(self):
-        os.system('echo 37 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 37 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_38(self):
-        os.system('echo 38 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 38 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     def remote_control_39(self):
-        os.system('echo 39 > .services/remote_update/data.txt && cd .serviecs && ./remote_init.sh')
+        os.system('echo 39 > /opt/.services/remote_update/data.txt && cd /opt/.serviecs && ./remote_init.sh')
     #def remote_control_40(self):
         #os.system('echo 40 > services//remote_update.txt')
                     
@@ -588,7 +667,16 @@ class MainWindow(QtWidgets.QMainWindow):
         
         self.user_creat = user_creat()
         self.user_creat.show()
-        
+
+    def remove_ui(self):
+
+        self.remove_ui = remove_ui()
+        self.remove_ui.show()     
+
+    def pass_reset(self):
+
+        self.reset_pass = password_reset()
+        self.reset_pass.show()
         
 def main():
     app = QtWidgets.QApplication(sys.argv)

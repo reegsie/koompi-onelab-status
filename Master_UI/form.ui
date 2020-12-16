@@ -30,7 +30,7 @@
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:  #1890ff;  color: white;</string>
+       <string notr="true">background-color:  #fff;  color: white;</string>
       </property>
       <property name="currentIndex">
        <number>0</number>
@@ -49,7 +49,7 @@
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">border: solid 3 blue; background-color: #1890ff;</string>
+           <string notr="true">border: solid 3 blue; background-color: #fff; color: black;</string>
           </property>
           <property name="currentIndex">
            <number>1</number>
@@ -252,6 +252,9 @@
                 <pointsize>12</pointsize>
                </font>
               </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: #1890ff;</string>
+              </property>
               <property name="text">
                <string>Creat User</string>
               </property>
@@ -284,7 +287,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_4">
+             <widget class="QPushButton" name="reset_pass_btn">
               <property name="font">
                <font>
                 <family>Droid Sans</family>
@@ -297,7 +300,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QPushButton" name="remove_btn">
               <property name="font">
                <font>
                 <family>Droid Sans</family>
@@ -322,7 +325,7 @@
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: #fff;</string>
+           <string notr="true">background-color:  #f0f2f5;</string>
           </property>
           <property name="widgetResizable">
            <bool>true</bool>
@@ -332,7 +335,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1572</width>
+             <width>1589</width>
              <height>1500</height>
             </rect>
            </property>
@@ -341,6 +344,9 @@
              <width>0</width>
              <height>1500</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: #f0f2f5;</string>
            </property>
            <layout class="QGridLayout" name="gridLayout_3">
             <item row="3" column="1">
@@ -1140,11 +1146,17 @@
             </item>
             <item row="2" column="0">
              <widget class="QPushButton" name="remote_btn_4">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>25</height>
+               </size>
+              </property>
               <property name="autoFillBackground">
                <bool>false</bool>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color: </string>
+               <string notr="true">background-color: #1890ff; border: 0; </string>
               </property>
               <property name="text">
                <string/>
