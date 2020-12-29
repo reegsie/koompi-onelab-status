@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1746</width>
+    <width>1790</width>
     <height>825</height>
    </rect>
   </property>
@@ -59,7 +59,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>1570</width>
+             <width>1614</width>
              <height>1500</height>
             </rect>
            </property>
@@ -868,25 +868,6 @@
               </layout>
              </widget>
             </item>
-            <item row="2" column="0">
-             <widget class="QPushButton" name="remote_btn_4">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>25</height>
-               </size>
-              </property>
-              <property name="autoFillBackground">
-               <bool>false</bool>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: #1890ff; border: 0; </string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
             <item row="10" column="3">
              <widget class="QPushButton" name="remote_btn_30">
               <property name="autoFillBackground">
@@ -1351,6 +1332,16 @@
               </layout>
              </widget>
             </item>
+            <item row="2" column="0">
+             <widget class="QPushButton" name="remote_btn_4">
+              <property name="styleSheet">
+               <string notr="true">background-color:</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
            </layout>
           </widget>
          </widget>
@@ -1373,63 +1364,13 @@
            <string notr="true">border: solid 3 blue; background-color:  #f0f2f5; color: black;</string>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab1">
            <attribute name="title">
             <string/>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_4">
-            <item row="3" column="0">
-             <widget class="QPushButton" name="blank_btn">
-              <property name="minimumSize">
-               <size>
-                <width>94</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Droid Sans</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">padding: 5px; background-color: #fff;</string>
-              </property>
-              <property name="text">
-               <string> Lock       </string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QPushButton" name="file_btn">
-              <property name="minimumSize">
-               <size>
-                <width>94</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Droid Sans</family>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">padding: 5px; background-color: #fff;</string>
-              </property>
-              <property name="text">
-               <string>  File       </string>
-              </property>
-             </widget>
-            </item>
             <item row="2" column="0">
              <widget class="QPushButton" name="pause_btn">
               <property name="minimumSize">
@@ -1453,10 +1394,14 @@
               <property name="text">
                <string> Pause     </string>
               </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../../.designer/backup/images/photo_2020-12-17_10-31-26.jpg</normaloff>../../.designer/backup/images/photo_2020-12-17_10-31-26.jpg</iconset>
+              </property>
              </widget>
             </item>
             <item row="5" column="0">
-             <widget class="QPushButton" name="screen_share_btn">
+             <widget class="QPushButton" name="file_btn">
               <property name="minimumSize">
                <size>
                 <width>94</width>
@@ -1476,9 +1421,87 @@
                <string notr="true">padding: 5px; background-color: #fff;</string>
               </property>
               <property name="text">
-               <string> Share    </string>
+               <string>  File       </string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../../.designer/backup/images/photo_2020-12-17_10-31-30.jpg</normaloff>../../.designer/backup/images/photo_2020-12-17_10-31-30.jpg</iconset>
               </property>
              </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QPushButton" name="blank_btn">
+              <property name="minimumSize">
+               <size>
+                <width>94</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Droid Sans</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">padding: 5px; background-color: #fff;</string>
+              </property>
+              <property name="text">
+               <string> Lock       </string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../../.designer/backup/images/photo_2020-12-17_10-31-19.jpg</normaloff>../../.designer/backup/images/photo_2020-12-17_10-31-19.jpg</iconset>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="0">
+             <widget class="QPushButton" name="refresh_btn">
+              <property name="minimumSize">
+               <size>
+                <width>94</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Droid Sans</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">padding: 5px; background-color: #fff;</string>
+              </property>
+              <property name="text">
+               <string> Refresh </string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../../.designer/backup/images/photo_2020-12-17_10-31-28.jpg</normaloff>../../.designer/backup/images/photo_2020-12-17_10-31-28.jpg</iconset>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="0">
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>200</height>
+               </size>
+              </property>
+             </spacer>
             </item>
             <item row="1" column="0">
              <widget class="QPushButton" name="play_btn">
@@ -1506,9 +1529,29 @@
               <property name="text">
                <string>  Play       </string>
               </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../../.designer/backup/images/play.jpg</normaloff>../../.designer/backup/images/play.jpg</iconset>
+              </property>
              </widget>
             </item>
-            <item row="8" column="0">
+            <item row="0" column="0">
+             <spacer name="verticalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="9" column="0">
              <widget class="QPushButton" name="start_btn">
               <property name="minimumSize">
                <size>
@@ -1531,10 +1574,14 @@
               <property name="text">
                <string> On/Off  </string>
               </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../../.designer/backup/images/photo_2020-12-17_10-42-08.jpg</normaloff>../../.designer/backup/images/photo_2020-12-17_10-42-08.jpg</iconset>
+              </property>
              </widget>
             </item>
             <item row="6" column="0">
-             <widget class="QPushButton" name="refresh_btn">
+             <widget class="QPushButton" name="screen_share_btn">
               <property name="minimumSize">
                <size>
                 <width>94</width>
@@ -1554,41 +1601,26 @@
                <string notr="true">padding: 5px; background-color: #fff;</string>
               </property>
               <property name="text">
-               <string> Refresh </string>
+               <string> Share    </string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../../.designer/backup/images/photo_2020-12-17_10-42-10.jpg</normaloff>../../.designer/backup/images/photo_2020-12-17_10-42-10.jpg</iconset>
               </property>
              </widget>
             </item>
-            <item row="7" column="0">
-             <spacer name="verticalSpacer">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
+            <item row="4" column="0">
+             <widget class="QPushButton" name="unlock_btn">
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
               </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Fixed</enum>
+              <property name="styleSheet">
+               <string notr="true">padding: 5px; background-color: #fff;</string>
               </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>200</height>
-               </size>
+              <property name="text">
+               <string>Unlock</string>
               </property>
-             </spacer>
-            </item>
-            <item row="0" column="0">
-             <spacer name="verticalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Fixed</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
+             </widget>
             </item>
            </layout>
           </widget>
