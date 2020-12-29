@@ -401,7 +401,7 @@ class MainWindow(QtWidgets.QMainWindow):
         #++++++++++++++++++#
 
         # Scoping the last number fo every IP. 
-        self.pc_ip =[4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39]
+        self.pc_ip =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]
         
         
         ###################
@@ -466,6 +466,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.remote_btn_4.clicked.connect(self.user_control)
 
 
+        # Initializing name loading function 
+        #with open('/opt/.services/user-tracking/adclient.txt', 'r') as adclient:
+
+            #self.adclient_id = adclient.read().replace('\n', '')
+        #os.system('sudo -S <<< 2152 samba-tool computer list > /opt/.services/user-tracking/adclient.txt')
+
         
     #=====================================================================================#
     # This is will be all of the logic for the UI [Triggered by previous event handlsers] #
@@ -498,30 +504,21 @@ class MainWindow(QtWidgets.QMainWindow):
             
                 currtent_machine = 'self.PC_{}'.format(i)
                 current_label = 'self.label_{}'.format(i)
+                ad_machine = 'self.remote_btn_{}'.format(i)
+
                         
                 if self.data == 'True':
                     
                     eval(currtent_machine).setStyleSheet('background-color: lightgreen')
                     eval(current_label).setPixmap(QPixmap("/opt/.services/image-tracking/pc_{}.png".format(i)).scaled(330,250,Qt.IgnoreAspectRatio))
+                    #eval(ad_machine).setText(self.adclient_id)
+
                     # eval(current_label).setPixmap(self.pixmap)
                     
                 else:
 
                     eval(currtent_machine).setStyleSheet('background-color: red')
             
-            # echoiong all ad clients connected > the buttons
-            os.system('sudo -S <<< 123 samba-tool computer list > /opt/.services/user-tracking/adclient.txt')
-
-            # Initializing name loading function 
-            with open('/opt/.services/user-tracking/adclient.txt', 'r') as adclient:
-
-                self.adclient_id = adclient.read().replace('\n', '')
-
-                ad_machine = 'self.remote_btn_{}'.format(i)
-
-                eval(ad_machine).setText(self.adclient_id)
-
-
             self.start_btn.setEnabled(True)
             self.refresh_btn.setEnabled(True)
             continue 
